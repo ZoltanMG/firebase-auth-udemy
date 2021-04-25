@@ -13,7 +13,7 @@ const Menu = () => {
                         <Link className="nav-link" to="/Login">Login</Link>
                     </li>
                     <li>
-                        <Link className="nav-link" to="/Admin">Menu</Link>
+                        <Link className="nav-link" to="/Admin">Admin</Link>
                     </li>
                 </ul>
             </nav>
