@@ -20,6 +20,21 @@ const Login = () => {
             });
     }
 
+    const LoginUsuario = () => {
+        auth.signInWithEmailAndPassword(email, pass)
+        .then((respuesta) => console.log(respuesta))
+        .catch((error) => {
+            // auth/wrong-password
+            // auth/user-not-found
+            if (error.code === 'auth/wrong-password') {
+                setMsgError('Contraseña incorrecta')
+            }
+            if (error.code === 'auth/user-not-found') {
+                setMsgError('Correo no registrado')
+            }
+        })
+    }
+
     return (
         <div className="row mt-5">
             <div className="col"></div>
@@ -43,10 +58,16 @@ const Login = () => {
                         value="Registrar Usuario"
                     />
                 </form>
+                <button
+                    onClick={LoginUsuario}
+                    className="btn btn-success btn-block"
+                >
+                    Iniciar sesión
+                </button>
                 {
                     msgError !== null ?
                         (
-                            <div>
+                            <div className="alert alert-danger mt-2">
                                 {msgError}
                             </div>
                         )
