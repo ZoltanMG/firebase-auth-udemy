@@ -9,7 +9,6 @@ const Menu = () => {
         auth.onAuthStateChanged((user) => {
             if (user) {
                 setUsuario(user.email);
-                console.log(user.email);
             }
         });
     }, []);
@@ -39,9 +38,6 @@ const Menu = () => {
                                 )
                         }
 
-                    </li>
-                    <li>
-                        <Link className="nav-link" to="/Admin">Admin</Link>
                     </li>
                 </ul>
                 {
