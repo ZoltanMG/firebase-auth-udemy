@@ -22,17 +22,21 @@ const Login = () => {
 
     const LoginUsuario = () => {
         auth.signInWithEmailAndPassword(email, pass)
-        .then((respuesta) => console.log(respuesta))
-        .catch((error) => {
-            // auth/wrong-password
-            // auth/user-not-found
-            if (error.code === 'auth/wrong-password') {
-                setMsgError('Contraseña incorrecta')
+            .then((respuesta) => {
+                console.log(respuesta)
+                setMsgError(null)
             }
-            if (error.code === 'auth/user-not-found') {
-                setMsgError('Correo no registrado')
-            }
-        })
+            )
+            .catch((error) => {
+                // auth/wrong-password
+                // auth/user-not-found
+                if (error.code === 'auth/wrong-password') {
+                    setMsgError('Contraseña incorrecta')
+                }
+                if (error.code === 'auth/user-not-found') {
+                    setMsgError('Correo no registrado')
+                }
+            })
     }
 
     return (
