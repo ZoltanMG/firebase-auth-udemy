@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { auth } from '../firebaseconfig';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+    const historial = useHistory()
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [msgError, setMsgError] = useState(null)
@@ -9,7 +11,10 @@ const Login = () => {
     const RegistrarUsuario = (event) => {
         event.preventDefault();
         auth.createUserWithEmailAndPassword(email, pass)
-            .then(respuesta => alert('Usuario registrado'))
+            .then(respuesta => {
+                setMsgError(null)
+                historial.push('/')
+            })
             .catch(event => {
                 if (event.code === 'auth/invalid-email') {
                     setMsgError('Formato de email incorrecto.')
@@ -23,8 +28,8 @@ const Login = () => {
     const LoginUsuario = () => {
         auth.signInWithEmailAndPassword(email, pass)
             .then((respuesta) => {
-                console.log(respuesta)
                 setMsgError(null)
+                historial.push('/')
             }
             )
             .catch((error) => {
